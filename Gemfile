@@ -44,3 +44,4 @@ end
 
 
 gem 'pg'
+gem 'apns'
