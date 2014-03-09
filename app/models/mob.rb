@@ -7,10 +7,12 @@ class Mob < ActiveRecord::Base
     User.find(self.user_ids.split(','))
   end
 
-  private
-
   def send_push
-    puts 'meowwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww'
-    puts self.attributes.to_s
+    APNS.pem = 'app/assets/cert.pem'
+
+    users.each do |user|
+      puts user.device_id
+      APNS.send_notification(user.device_id, 'Meow!')
+    end
   end
 end
