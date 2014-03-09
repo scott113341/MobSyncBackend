@@ -1,0 +1,27 @@
+<h1>Listing mobs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User ids</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mobs.each do |mob| %>
+      <tr>
+        <td><%= mob.user_ids %></td>
+        <td><%= link_to 'Show', mob %></td>
+        <td><%= link_to 'Edit', edit_mob_path(mob) %></td>
+        <td><%= link_to 'Destroy', mob, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mob', new_mob_path %>
