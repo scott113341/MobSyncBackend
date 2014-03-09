@@ -10,7 +10,7 @@ class MobsController < ApplicationController
   # GET /mobs/1
   # GET /mobs/1.json
   def show
-    @mob.send_push
+    @mob.send_push_notification
   end
 
   # GET /mobs/new
