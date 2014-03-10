@@ -15,7 +15,7 @@ class Mob < ActiveRecord::Base
         :alert => 'Meow!',
         :badge => 0,
         :other => {
-          :somekey => 'somevalue'
+          :mob => self.attributes
         }
       }
 
