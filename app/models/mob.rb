@@ -1,25 +1,40 @@
 require 'apns'
 
 class Mob < ActiveRecord::Base
-  before_create :send_push_notification
+  include ActionView::Helpers::TextHelper
 
-  def users
-    User.find(self.user_ids.split(','))
+  has_many :participants
+  has_many :users, through: :participants
+
+  before_create :set_unix_timestamp
+  after_create :create_participants, :send_push_notification
+
+  def user
+    User.find(self.user_id)
+  end
+
+  def set_unix_timestamp
+    self.unix_timestamp = Time.now.to_i
+  end
+
+  def create_participants
+    self.user_idz.split(',').each do |user_id|
+      Participant.create(mob_id: self.id, user_id: user_id)
+    end
   end
 
   def send_push_notification
     APNS.pem = 'app/assets/cert.pem'
 
-    users.each do |user|
+    self.participants.each do |participant|
       params = {
-        :alert => 'Meow!',
-        :badge => 0,
+        :alert => "You have #{pluralize participant.mob.participants.count-1, 'friend'} mobbing to #{participant.mob.destination}!",
         :other => {
           :mob => self.attributes
         }
       }
 
-      APNS.send_notification(user.device_id, params)
+      APNS.send_notification(participant.user.device_id, params)
     end
   end
 end
