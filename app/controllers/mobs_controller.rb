@@ -5,12 +5,13 @@ class MobsController < ApplicationController
   # GET /mobs.json
   def index
     @mobs = Mob.all
+
+    Mob.first.send_push_notification
   end
 
   # GET /mobs/1
   # GET /mobs/1.json
   def show
-    @mob.send_push_notification
   end
 
   # GET /mobs/new
@@ -70,6 +71,6 @@ class MobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mob_params
-      params.require(:mob).permit(:user_ids)
+      params.permit(:user_id, :user_idz, :destination)
     end
 end
