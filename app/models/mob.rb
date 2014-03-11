@@ -30,7 +30,7 @@ class Mob < ActiveRecord::Base
       params = {
         :alert => "You have #{pluralize participant.mob.participants.count-1, 'friend'} mobbing to #{participant.mob.destination}!",
         :other => {
-          :mob => self.attributes
+          :mob_id => self.id
         }
       }
 
