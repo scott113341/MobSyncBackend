@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20140310064618) do
 
   create_table "users", force: true do |t|
     t.string   "username"
+    t.string   "password"
     t.string   "name"
     t.string   "device_id"
     t.datetime "created_at"

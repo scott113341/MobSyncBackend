@@ -6,6 +6,8 @@ class Mob < ActiveRecord::Base
   has_many :participants
   has_many :users, through: :participants
 
+  validates_presence_of :user_id, :user_idz, :destination, :unix_timestamp
+
   before_create :set_unix_timestamp
   after_create :create_participants, :send_push_notification
 
