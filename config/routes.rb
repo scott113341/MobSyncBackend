@@ -6,5 +6,5 @@ MobSyncBackend::Application.routes.draw do
   post 'login', to: 'users#login'
 
   post 'usersearch', to: 'users#search'
-  post 'mymobs', to: 'mobs#my'
+  post 'mymobs', to: 'mobs#mymobs'
 end

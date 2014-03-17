@@ -17,12 +17,18 @@ class MobsController < ApplicationController
     end
   end
 
-  def my
+  def mymobs
     user = User.find_by_username(params[:username])
     mobs = user.mobs
 
     if mobs.length > 0
-      render json: mobs
+      rendermobs = []
+
+      mobs.each do |mob|
+        status = mob.participants.find_by_user_id(user).status
+        rendermobs.push({status: status}.merge(mob.attributes))
+      end
+      render json: rendermobs
     else
       render nothing: true
     end

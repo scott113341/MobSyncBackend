@@ -21,8 +21,10 @@ class Mob < ActiveRecord::Base
 
   def create_participants
     self.user_idz.split(',').each do |user_id|
-      Participant.create(mob_id: self.id, user_id: user_id)
+      Participant.create(mob_id: self.id, user_id: user_id, status: 0)
     end
+
+    Participant.create(mob_id: self.id, user_id: self.user_id, status: 1)
   end
 
   def send_push_notification
