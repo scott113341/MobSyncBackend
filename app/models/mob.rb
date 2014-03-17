@@ -16,7 +16,7 @@ class Mob < ActiveRecord::Base
   end
 
   def set_unix_timestamp
-    self.unix_timestamp = Time.now.to_i
+    self.unix_timestamp = Time.now.strftime('%-m/%-d/%Y')
   end
 
   def create_participants

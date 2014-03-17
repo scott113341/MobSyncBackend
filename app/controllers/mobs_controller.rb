@@ -22,11 +22,11 @@ class MobsController < ApplicationController
     mobs = user.mobs
 
     if mobs.length > 0
-      rendermobs = []
+      rendermobs = {}
 
       mobs.each do |mob|
         status = mob.participants.find_by_user_id(user).status
-        rendermobs.push({status: status}.merge(mob.attributes))
+        rendermobs["mob#{mob.id}"] = {status: status}.merge(mob.attributes)
       end
       render json: rendermobs
     else
