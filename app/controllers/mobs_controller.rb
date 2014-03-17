@@ -17,6 +17,17 @@ class MobsController < ApplicationController
     end
   end
 
+  def my
+    user = User.find_by_username(params[:username])
+    mobs = user.mobs
+
+    if mobs.length > 0
+      render json: mobs
+    else
+      render nothing: true
+    end
+  end
+
   # GET /mobs/new
   def new
     @mob = Mob.new

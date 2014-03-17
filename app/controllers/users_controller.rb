@@ -18,6 +18,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def search
+    user = User.find_by_username(params[:username])
+
+    if user.nil?
+      render nothing: true, status: :unauthorized
+    else
+      render json: user
+    end
+  end
+
 
   # GET /users/1
   # GET /users/1.json
