@@ -5,5 +5,4 @@ User.create(username: 'user2', password: 'a', name: 'User Twomaster', device_id:
 User.create(username: 'user3', password: 'a', name: 'User Threedude', device_id: 'abc')
 User.create(username: 'user4', password: 'a', name: 'User Fourman', device_id: 'abc')
 User.create(username: 'user5', password: 'a', name: 'User Fivemonster', device_id: 'abc')
-
-#Mob.create(user_id: User.first.id, user_idz: User.all.map{|u| u.id}.join(','), destination: 'Taco Bell')
+User.create(username: 'testuser', password: 'a', name: 'Test User', device_id: 'abc')

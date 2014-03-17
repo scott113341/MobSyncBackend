@@ -34,6 +34,14 @@ class MobsController < ApplicationController
     end
   end
 
+  def confirm
+    user = User.find_by_username(params[:username])
+    participant = Participant.where('mob_id = ? AND user_id = ?', params[:mob_id], user.id)
+
+    participant.status = 1
+    participant.save
+  end
+
   # GET /mobs/new
   def new
     @mob = Mob.new
