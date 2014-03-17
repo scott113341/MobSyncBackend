@@ -29,7 +29,10 @@ class MobsController < ApplicationController
   # POST /mobs
   # POST /mobs.json
   def create
-    @mob = Mob.new(mob_params)
+    @mob = Mob.new
+    @mob.user_id = User.where('username LIKE ?', mob_params[:username]).first.id
+    @mob.user_idz = params[:usernames].split(',').map{|u| User.find_by_username(u).id }.join(',')
+    @mob.destination = params[:destination]
 
     respond_to do |format|
       if @mob.save
@@ -74,6 +77,6 @@ class MobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mob_params
-      params.permit(:user_id, :user_idz, :destination)
+      params.permit(:user_id, :user_idz, :destination, :username)
     end
 end

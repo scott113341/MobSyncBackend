@@ -7,6 +7,18 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+
+  def login
+    user = User.where('username LIKE ? AND password LIKE ?', params[:username], params[:password])
+
+    if user.length > 0
+      render json: user.first
+    else
+      render nothing: true, status: :unauthorized
+    end
+  end
+
+
   # GET /users/1
   # GET /users/1.json
   def show
@@ -25,6 +37,8 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+
+    puts @user.attributes
 
     respond_to do |format|
       if @user.save
@@ -69,6 +83,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.permit(:username, :name, :device_id)
+      params.permit(:username, :password, :name, :device_id)
     end
 end
