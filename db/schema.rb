@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20140310064618) do
   create_table "participants", force: true do |t|
     t.integer  "mob_id"
     t.integer  "user_id"
+    t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
