@@ -1,37 +1,9 @@
-<h1>Listing users</h1>
+<h1>MobSync Backend</h1>
 
-<a href="/users.json">/users.json</a>
-<br/>
-<a href="/mobs.json">/mobs.json</a>
-<br/>
-<a href="/mobs/2.json">/mobs/2.json</a>
+<dl>
+  <dt>Users</dt>
+  <dd><a href="/users.json">/users.json</a></dd>
 
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Device</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.id %></td>
-        <td><%= user.name %></td>
-        <td><%= user.device_id %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>
+  <dt>Mobs</dt>
+  <dd><a href="/mobs.json">/mobs.json</a></dd>
+</dl>
