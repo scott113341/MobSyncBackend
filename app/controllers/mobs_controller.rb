@@ -13,7 +13,8 @@ class MobsController < ApplicationController
   # GET /mobs/1.json
   def show
     respond_to do |format|
-      format.json { render json: @mob.attributes.merge(users: @mob.users, date: Time.now.strftime('%-m/%-d/%Y')) }
+      people = @mob.user_idz.split(',').map{|i| User.find(i).name }.join(', ')
+      format.json { render json: @mob.attributes.merge(people: people, users: @mob.users, date: Time.now.strftime('%-m/%-d/%Y')) }
     end
   end
 
